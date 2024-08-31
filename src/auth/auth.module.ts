@@ -16,7 +16,7 @@ import { PassportModule } from '@nestjs/passport';
     PassportModule.register({defaultStrategy: 'jwt'}),    //added missing line
     JwtModule.register({
       secret: process.env.JWT_SECRET || 'secret', // Replace with your secret key
-      signOptions: { expiresIn: '5m' },
+      signOptions: { expiresIn: '30m' },
     }),
     MailModule,
   ],
