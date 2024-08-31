@@ -7,18 +7,20 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { MailModule } from '../mail/mail.module';
 import { MailService } from 'src/mail/mail.service';
+import { PassportModule } from '@nestjs/passport';
 
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
+    PassportModule.register({defaultStrategy: 'jwt'}),    //added missing line
     JwtModule.register({
       secret: process.env.JWT_SECRET || 'secret', // Replace with your secret key
       signOptions: { expiresIn: '5m' },
     }),
     MailModule,
   ],
-  providers: [AuthService ],
+  providers: [AuthService, JwtStrategy ],
   controllers: [AuthController],
 })
 export class AuthModule {}

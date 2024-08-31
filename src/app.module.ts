@@ -17,11 +17,11 @@ import { parseEnv } from 'util';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT), 
+      host: 'localhost',
+      port: 5432, 
       username: 'postgres',//process.env.DB_USERNAME,
       password: 'saurav',//process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
+      database: 'nestjs',
       entities: [User,Contact,],
       synchronize: true,
     }),

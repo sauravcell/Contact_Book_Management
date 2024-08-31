@@ -79,13 +79,13 @@ export class MailService {
    * @param data
    */
 
-  async sendVerificationEmail(user, ) {
+  async sendVerificationEmail(user, token ) {
     // const token = this.generateVerificationToken(user)
     const data= {
       from: 'sauravdrive02@gmail.com',
       to: user.email,     //receciepent needs to be registered to mailgun first in the sender account
       subject: 'Email Verification',
-      text: `Please verify your email by clicking on this link: http://localhost:3000/api/auth/verify?token= {token}`,
+      text: `Please verify your email by clicking on this link: http://localhost:3000/api/auth/verify?token=${token}`,
     };
     console.log({'Inside mail service':data})
     this.client.messages

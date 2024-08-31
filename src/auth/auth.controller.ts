@@ -14,10 +14,15 @@ export class AuthController {
         return this.authService.register(registerDto);
     }
 
-    // @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     @Get('verify')
     async verify(@Request() req){
         console.log(req);
         return this.authService.verifyEmail(req.user.userId);
+    }
+
+    @Post('login')                          //added missing login function
+    async login(@Body() loginDto:any){
+        return this.authService.login(loginDto);
     }
 }

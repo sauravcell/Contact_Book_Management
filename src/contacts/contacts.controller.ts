@@ -11,6 +11,7 @@ export class ContactsController {
     @UseGuards(JwtAuthGuard)
     @Post()
     async addContact(@Request() req, @Body() contactDto: []) {
+        console.log(req.user)
         return this.contactsService.addContact(req.user.userId, contactDto);
     }
 
@@ -22,6 +23,7 @@ export class ContactsController {
     @Query('limit') limit: number = 10,
     @Query('search') search?: string,
     ) {
+    console.log(req.user)    
     if (limit > 50) {
         throw new BadRequestException('Limit cannot exceed 50');
     }
