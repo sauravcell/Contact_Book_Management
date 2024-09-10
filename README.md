@@ -32,9 +32,9 @@ This project is a User and Contact Management API built using the NestJS framewo
 
   $ Pre-requisites
 
-  -Node.js and npm
-  -PostgreSQL
-  -Mailgun account for email services
+  -Node.js and npm<br>
+  -PostgreSQL<br>
+  -Mailgun account for email services<br>
 
   $ Setup
 
