@@ -4,6 +4,7 @@
     
 
 <p>
+
 ## Overview
 
 This project is a User and Contact Management API built using the NestJS framework and PostgreSQL as the database. The API allows users to register, login, verify their email addresses, and manage a personal contacts book. The application also supports JWT-based authentication to ensure that only authenticated users can access protected routes.
