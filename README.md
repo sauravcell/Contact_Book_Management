@@ -1,85 +1,109 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  <p align="center">User and Contact Management.</p>
+    
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Overview
+
+This project is a User and Contact Management API built using the NestJS framework and PostgreSQL as the database. The API allows users to register, login, verify their email addresses, and manage a personal contacts book. The application also supports JWT-based authentication to ensure that only authenticated users can access protected routes.
+
+##Features
+
+-User Registration: Users can register using their email and receive a verification link via email.
+-Email Verification: Users must verify their email address before accessing protected routes.
+-User Login: JWT-based authentication for secure login.
+-Create, Read, Update, and Delete (CRUD) Contacts: Authenticated users can manage their own contacts.
+-Search Contacts: Users can search contacts by name or phone number.
+-Pagination: Retrieve contacts with pagination support.
+-Protected Routes: Contacts API routes are restricted to logged-in users.
+
+## Technologies used
+
+  -NestJS: Backend framework.
+  -TypeORM: ORM for database interactions.
+  -PostgreSQL: Database.
+  -JWT: JSON Web Tokens for authentication.
+  -Mailgun: Email service for sending verification emails.
+  -Postman: API documentation and testing.
 
 ## Project setup
 
-```bash
-$ npm install
-```
+  $ Pre-requisites
+
+  -Node.js and npm
+  -PostgreSQL
+  -Mailgun account for email services
+
+  $ Setup
+
+  ```bash
+
+    $ git clone https://github.com/sauravcell/Contact_Book_Management.git
+    $ cd Contact_Book_Management
+    $ npm install 
+
+  ```
+  -setup the .env file.
 
 ## Compile and run the project
 
-```bash
-# development
-$ npm run start
+  ```bash
+  # development
+  $ npm run start
+  
+  # watch mode
+  $ npm run start:dev
+  
+  # production mode
+  $ npm run start:prod
+  ```
 
-# watch mode
-$ npm run start:dev
+## API Endpoints
 
-# production mode
-$ npm run start:prod
-```
+1. User Registration:
+  $ POST /api/auth/register
+  -Registers a new user and sends a verification email.
 
-## Run tests
+2. User Login:
+  $ POST /api/auth/login
+  -Authenticates a user and returns a JWT.
 
-```bash
-# unit tests
-$ npm run test
+3. Email Verification:
+  $ GET /api/auth/verify?token={token}
+  -Verifies a user's email with the token sent in the verification email.
 
-# e2e tests
-$ npm run test:e2e
+4. Create Contact:
+  $ POST /api/contacts
+  -Requires JWT token in the Authorization header.
+  -Creates a new contact for the authenticated user.
 
-# test coverage
-$ npm run test:cov
-```
+5. Get All Contacts (With Pagination):
+  $ GET /api/contacts?page={page}&limit={limit}
+  -Requires JWT token in the Authorization header.
+  -Retrieves all contacts with pagination support.
 
+6. Search Contacts:
+  $ GET /api/contacts/search?query={name_or_phone}
+  -Requires JWT token in the Authorization header.
+  -Searches for contacts by name or phone number.
+
+7. Update Contact:
+  $ PUT /api/contacts/{contactId}
+  -Requires JWT token in the Authorization header.
+  -Updates a specific contact by ID.
+
+8. Delete Contact:
+  $ DELETE /api/contacts/{contactId}
+  -Requires JWT token in the Authorization header.
+  -Deletes a specific contact by ID.
+
+## Database
+
+  $ Entities: user Entity, Contact Entity.
+  $ Relationship: One-To-Many.
+  
 ## Resources
 
-Check out a few resources that may come in handy when working with NestJS:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
