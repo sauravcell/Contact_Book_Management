@@ -63,54 +63,52 @@ This project is a User and Contact Management API built using the NestJS framewo
 1. User Registration:
   $ POST /api/auth/register
 
-  -Registers a new user and sends a verification email.
+    -> Registers a new user and sends a verification email.
 
 2. User Login:
   $ POST /api/auth/login
 
-  -Authenticates a user and returns a JWT.
+    -> Authenticates a user and returns a JWT.
 
 3. Email Verification:
   $ GET /api/auth/verify?token={token}
 
-  -Verifies a user's email with the token sent in the verification email.
+    -> Verifies a user's email with the token sent in the verification email.
 
 4. Create Contact:
   $ POST /api/contacts
 
-  -Requires JWT token in the Authorization header.
+    -> Requires JWT token in the Authorization header.
 
-  -Creates a new contact for the authenticated user.
+    -> Creates a new contact for the authenticated user.
 
 5. Get All Contacts (With Pagination):
-
   $ GET /api/contacts?page={page}&limit={limit}
 
-  -Requires JWT token in the Authorization header.
+    -> Requires JWT token in the Authorization header.
 
-  -Retrieves all contacts with pagination support.
+    -> Retrieves all contacts with pagination support.
 
 6. Search Contacts:
   $ GET /api/contacts/search?query={name_or_phone}
-
   
-  -Requires JWT token in the Authorization header.
+    -> Requires JWT token in the Authorization header.
   
-  -Searches for contacts by name or phone number.
+    -> Searches for contacts by name or phone number.
 
 7. Update Contact:
   $ PUT /api/contacts/{contactId}
   
-  -Requires JWT token in the Authorization header.
+    -> Requires JWT token in the Authorization header.
   
-  -Updates a specific contact by ID.
+    -> Updates a specific contact by ID.
 
 8. Delete Contact:
   $ DELETE /api/contacts/{contactId}
   
-  -Requires JWT token in the Authorization header.
+    -> Requires JWT token in the Authorization header.
   
-  -Deletes a specific contact by ID.
+    -> Deletes a specific contact by ID.
 
 ## Database
 
